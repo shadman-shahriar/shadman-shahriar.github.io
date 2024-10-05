@@ -25,6 +25,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - /README.md
 
 # Plugins
 plugins:
