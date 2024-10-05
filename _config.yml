@@ -1,3 +1,7 @@
-theme: jekyll-theme-minimal
 title: Shadman's Portfolio
-description: Bookmark this to keep an eye on my project updates!
+logo: "/images/logo.jpeg?raw=true"
+description: >
+First description
+<br><br>
+Second description
+theme: jekyll-theme-minimal
