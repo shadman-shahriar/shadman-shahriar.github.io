@@ -1,12 +1,15 @@
 title: Shadman Shahriar
 description: Hi
 url: "https://shadman-shahriar.github.io"
+markdown: kramdown
+theme: minima
+
+# Collections
+collections:
+  projects:
+    output: true
+  blog:
+    output: tru
+    
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
   - README.md
