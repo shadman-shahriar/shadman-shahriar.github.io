@@ -9,7 +9,7 @@ collections:
   projects:
     output: true
   blog:
-    output: tru
+    output: true
     
 exclude:
   - README.md
