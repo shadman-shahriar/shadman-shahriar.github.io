@@ -1,866 +1,279 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- Relying on absence of 'dark' for light theme -->
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="images/main_photo.png">
-    <title>Shadman's Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for theme icon and other icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Default light theme styles: white, gray, light blue */
-            background-color: #FFFFFF; /* white */
-            color: #333333; /* dark gray */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/main_photo.png" />
+  <title>Shadman's Portfolio</title>
 
-        /* Dark theme styles applied when html has 'dark' class: teal, dark green, black, gray */
-        html.dark body {
-            background-color: #121212; /* very dark gray, almost black */
-            color: #E0E0E0; /* light gray */
-        }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Header background for light theme (50% opacity) */
-        header {
-            background-color: rgba(240, 248, 255, 0.5); /* aliceblue with 50% opacity */
-        }
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-        html.dark header {
-            /* 50% transparent in dark mode */
-            background-color: rgba(23, 32, 42, 0.5); /* a very dark gray with 50% opacity */
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-        section { /* For About, Skills, Projects, Contact sections in light mode */
-            background-color: #FFFFFF; /* white */
-        }
-
-        html.dark section { /* For About, Skills, Projects, Contact sections in dark mode */
-            background-color: #1C1C1C; /* darker gray */
-        }
-
-        h2, h3 { /* Headings for light mode */
-            color: #6495ED; /* cornflower blue */
-        }
-
-        html.dark h2, html.dark h3 { /* Headings for dark mode */
-            color: #00CED1; /* dark turquoise (teal) */
-        }
-
-        .text-gray-700 { /* General text in sections for light mode */
-            color: #4a4a4a; /* darker gray */
-        }
-
-        html.dark .text-gray-700 { /* General text in sections for dark mode */
-            color: #B0B0B0; /* medium light gray */
-        }
-
-        .bg-indigo-50 { /* For skill cards in light mode */
-            background-color: #E0F2F7; /* light cyan (light blue-ish) */
-        }
-
-        html.dark .bg-indigo-50 { /* For skill cards in dark mode */
-            background-color: #2F4F4F; /* dark slate gray (dark teal/green) */
-        }
-
-        .text-indigo-800 { /* For skill card headings in light mode */
-            color: #4682B4; /* steel blue (medium blue) */
-        }
-
-        html.dark .text-indigo-800 { /* For skill card headings in dark mode */
-            color: #20B2AA; /* light sea green (vibrant teal) */
-        }
-
-        .text-gray-600 { /* For skill card descriptions in light mode */
-            color: #666666; /* medium gray */
-        }
-
-        html.dark .text-gray-600 { /* For skill card descriptions in dark mode */
-            color: #A9A9A9; /* dark gray */
-        }
-
-        .bg-gray-50 { /* For project cards */
-            background-color: #F0F8FF; /* aliceblue */
-        }
-
-        html.dark .bg-gray-50 { /* For project cards in dark mode */
-            background-color: #2F4F4F; /* dark slate gray */
-        }
-
-        .bg-indigo-200 { /* For project tech tags */
-            background-color: #B0E0E6; /* powder blue (light blue) */
-        }
-
-        html.dark .bg-indigo-200 { /* For project tech tags in dark mode */
-            background-color: #008080; /* teal */
-        }
-
-        .text-indigo-800 { /* For project tech tags text */
-            color: #4682B4; /* steel blue */
-        }
-
-        html.dark .text-indigo-800 { /* For project tech tags text in dark mode */
-            color: #E0FFFF; /* light cyan */
-        }
-
-        input, textarea { /* Input fields in light mode */
-            background-color: #F8F8F8; /* light gray */
-            border-color: #CCCCCC; /* light gray */
-            color: #333333;
-        }
-
-        html.dark input, html.dark textarea { /* Input fields in dark mode */
-            background-color: #222222; /* dark gray */
-            border-color: #444444; /* medium dark gray */
-            color: #E0E0E0; /* light gray */
-        }
-
-        input::placeholder, textarea::placeholder { /* Placeholder text in light mode */
-            color: #999999;
-        }
-
-        html.dark input::placeholder, html.dark textarea::placeholder { /* Placeholder text in dark mode */
-            color: #888888;
-        }
-
-        footer { /* Footer in light mode */
-            background-color: #E0E0E0; /* light gray */
-        }
-
-        html.dark footer { /* Footer in dark mode */
-            background-color: #0A0A0A; /* almost black */
-        }
-
-        html.dark .text-gray-400 { /* For footer social links in dark mode */
-            color: #B0B0B0; /* light gray */
-        }
-
-        /* Custom scrollbar for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        /* Hide default scrollbar for projects container */
-        .projects-scroll-container::-webkit-scrollbar {
-            display: none;
-        }
-        .projects-scroll-container {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-
-        /* Styling for navigation arrows */
-        .scroll-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-            color: white;
-            padding: 1rem 0.5rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s ease;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .scroll-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .scroll-arrow.left {
-            left: 0;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .scroll-arrow.right {
-            right: 0;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        /* Dark mode styles for arrows */
-        html.dark .scroll-arrow {
-            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-            color: #e2e8f0; /* light text */
-        }
-        html.dark .scroll-arrow:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Typing effect cursor */
-        .typing-effect::after {
-            content: '|';
-            animation: blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: white; }
-        }
-
-        /* Hero section text colors for dark mode */
-        html.dark #hero h1,
-        html.dark #hero p {
-            color: #607A3E; /* Dark Green */
-        }
-
-        html.dark #typing-text {
-            color: #00CED1; /* Teal */
-        }
-
-        /* Hero section background color for light and dark themes */
-        #hero {
-            background-color: #cad2c5; /* Light Blue for light mode */
-        }
-
-        html.dark #hero {
-            background-color: #354f52; /* Dark Teal/Green for dark mode */
-        }
-    </style>
+  <!-- Project styles -->
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body class="antialiased transition-colors duration-300">
-    <!-- Header/Navigation -->
-    <header class="shadow-none py-4 sticky top-0 z-50 transition-colors duration-300">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <!-- Changed "My Portfolio" to "Shadman's Portfolio" with logo-like styling -->
-            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-md p-2 hover:bg-indigo-50 transition duration-300">
-                <span class="font-extrabold text-3xl" style="color: #6495ED;">Shadman's</span> <span class="font-semibold text-2xl" style="color: #4682B4;">Portfolio</span>
-            </a>
-            <ul class="flex items-center space-x-6">
-                <li><a href="#about" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">About</a></li>
-                <li><a href="#skills" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Skills</a></li>
-                <li><a href="#education" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Education</a></li>
-                <li><a href="#projects-page" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Projects</a></li>
+  <!-- Header/Navigation -->
+  <header class="shadow-none py-4 sticky top-0 z-50 transition-colors duration-300">
+    <nav class="container mx-auto px-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-indigo-600 rounded-md p-2 hover:bg-indigo-50 transition duration-300">
+        <span class="font-extrabold text-3xl" style="color: #6495ED;">Shadman's</span>
+        <span class="font-semibold text-2xl" style="color: #4682B4;">Portfolio</span>
+      </a>
 
-                <li><a href="#experience" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Experience</a></li> <!-- Moved Nav Link -->
-                <li><a href="#contact" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Contact</a></li>
-                <li>
-                    <!-- Theme Toggle Button -->
-                    <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        <i class="fas fa-moon" id="theme-toggle-icon"></i>
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+      <ul class="flex items-center space-x-6">
+        <li><a href="#about" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">About</a></li>
+        <li><a href="#skills" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Skills</a></li>
+        <li><a href="#education" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Education</a></li>
+        <li><a href="#projects-page" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Projects</a></li>
+        <li><a href="#experience" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Experience</a></li>
+        <li><a href="#contact" class="font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50" style="color: #4682B4;">Contact</a></li>
 
-    <main class="container mx-auto px-4 py-8">
-        <!-- Hero Section -->
-        <section id="hero" class="flex flex-col md:flex-row items-center justify-center text-white rounded-xl shadow-lg p-10 mb-12 min-h-[400px]">
-            <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                <h1 class="text-5xl font-extrabold leading-tight mb-4">Hi, I'm Shadman Shahriar</h1>
-                <!-- Dynamic typing effect for professions -->
-                <p class="text-xl mb-6">I am into <span id="typing-text" class="typing-effect font-semibold"></span></p>
-                <!-- Changed href to projects.html -->
-                <a href="#projects-page" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
-                    style="color: #6495ED;">View My Work</a>
+        <li>
+          <button
+            id="theme-toggle"
+            class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            type="button"
+          >
+            <i class="fas fa-moon" id="theme-toggle-icon"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-                <!-- Social Media Links -->
-                <div class="mt-8 flex justify-center md:justify-start space-x-6 text-2xl">
-                    <a href="https://github.com/shadman-shahriar" target="_blank" aria-label="GitHub" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="http://linkedin.com/in/shadmanshahriar" target="_blank" aria-label="LinkedIn" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.facebook.com/shadman0001" target="_blank" aria-label="Facebook" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/shadman0001/" target="_blank" aria-label="Instagram" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://wa.me/1722158353" target="_blank" aria-label="WhatsApp" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
+  <main class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <section id="hero" class="flex flex-col md:flex-row items-center justify-center text-white rounded-xl shadow-lg p-10 mb-12 min-h-[400px]">
+      <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+        <h1 class="text-5xl font-extrabold leading-tight mb-4">Hi, I'm Shadman Shahriar</h1>
+        <p class="text-xl mb-6">I am into <span id="typing-text" class="typing-effect font-semibold"></span></p>
 
-                <!-- New Buttons: My Portfolio and My Resume -->
-                <div class="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="https://mega.nz/file/3c03SCCb#-DLGo6lUCa3LxmMMKTVZBZjA62BxVWofpTPH2s8OaMk" target="_blank"
-                        class="inline-block bg-white text-indigo-600 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
-                        style="color: #6495ED;"><i class="fas fa-download mr-2"></i>Portfolio</a>
-                    <a href="https://mega.nz/file/zZc3GDZT#fclhQZsGbaRyZ-jgfi03m6t1V3QfuFA1mPMDPzWYAwM" target="_blank"
-                        class="inline-block bg-white text-indigo-600 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
-                        style="color: #6495ED;"><i class="fas fa-download mr-2"></i>Resume</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-end">
-                <!-- Profile picture with the new local path -->
-                <img src="images/main_photo.png" alt="Your Profile Photo" class="w-64 h-64 rounded-full object-cover border-4 border-white shadow-xl">
-            </div>
-        </section>
+        <a
+          href="#projects-page"
+          class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
+          style="color: #6495ED;"
+        >
+          View My Work
+        </a>
 
-        <!-- About Me Section -->
-        <section id="about" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">About Me</h2>
-            <div class="prose max-w-none text-gray-700 leading-relaxed">
-                <p class="mb-4">Hello! I'm Shadman Shahriar, an Electronics and Embedded Systems Engineer with a passion for bringing innovative ideas to life through hardware and software integration. My journey in electronics began with a Diploma in Electronics Engineering, followed by a Bachelor of Science in EETE, providing me with a robust theoretical and practical foundation.</p>
-                <p class="mb-4">
-                    A passionate Embedded Software Engineer 🚀 with experience in Microcontrollers, Sensors, firmware, and Embedded Systems. Good working knowledge of C/C++, PCB, and circuit design with manufacturing and quality assurance.
-                </p>
-                <p class="mb-4">
-                    Throughout my career, I've honed my skills in designing and developing microcontroller-based solutions, writing efficient real-time code, creating device drivers, and integrating various communication protocols. My expertise extends to comprehensive testing and debugging, ensuring seamless functionality from concept to production. I thrive on collaborating with cross-functional teams, including production engineers, to deliver high-quality electronic products.
-                </p>
-                <p>
-                    Beyond the technical aspects, I also have experience in product management and field application engineering, bridging the gap between technical development and market needs. I am dedicated to continuous learning and staying abreast of the latest advancements in embedded systems and electronics, always seeking new challenges to expand my capabilities and contribute to impactful projects.
-                </p>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">What I do</h2>
-            <div class="flex flex-col md:flex-row items-start md:space-x-8">
-                <!-- Left side: Illustration placeholder -->
-                <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
-                    <img src="images/skills-illustration.png" alt= "What I Do Illustration" class="rounded-lg shadow-md w-full h-auto max-w-xs">
-                </div>
-                <!-- Right side: Text and icons -->
-                <div class="md:w-2/3">
-                    <p class="text-xl font-semibold text-gray-700 dark:text-gray-700 mb-6">DEVELOPING FIRMWARE OF MICROCONTROLLERS AND DESIGNING HARDWARE CIRCUIT (PCBs)</p>
-
-                    <!-- Technology Icons Table -->
-                    <div class="mb-8 overflow-x-auto">
-                        <table class="table-fixed w-full border-collapse">
-                            <thead>
-                                <tr>
-                                    <!-- Empty headers for layout (8 columns) -->
-                                    <th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="h-20"> <!-- Reduced height for rows for smaller images -->
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/c.png" alt="C Language" class="inline-block w-12 h-12 object-contain" title="C">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/cpp.png" alt="C++ Language" class="inline-block w-12 h-12 object-contain" title="C++">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/avr.png" alt="AVR MCU" class="inline-block w-12 h-12 object-contain" title="AVR">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/arm.png" alt="ARM MCU" class="inline-block w-12 h-12 object-contain" title="ARM">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/stm32.png" alt="STM32 MCU" class="inline-block w-12 h-12 object-contain" title="STM32">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/arduinoide.png" alt="Arduino" class="inline-block w-12 h-12 object-contain" title="Arduino">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/esp.png" alt="ESP8266" class="inline-block w-12 h-12 object-contain" title="ESP8266">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/esp32.png" alt="ESP32" class="inline-block w-12 h-12 object-contain" title="ESP32">
-                                    </td>
-                                </tr>
-                                <tr class="h-20"> <!-- Reduced height for rows for smaller images -->
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/kicad.png" alt="KiCad" class="inline-block w-12 h-12 object-contain" title="KiCad">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/easyeda.png" alt="EasyEDA" class="inline-block w-12 h-12 object-contain" title="EasyEDA">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/altium.png" alt="Altium Designer" class="inline-block w-12 h-12 object-contain" title="Altium Designer">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/eagle.png" alt="Eagle" class="inline-block w-12 h-12 object-contain" title="Eagle">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/proteus.png" alt="Proteus" class="inline-block w-12 h-12 object-contain" title="Proteus">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <img src="images/mikroc.png" alt="MikroC" class="inline-block w-12 h-12 object-contain" title="MikroC">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <!-- Placeholder for additional skill or empty cell -->
-                                        <img src="images/microcontroller.png" alt="MCU" class="inline-block w-12 h-12 object-contain" title="MCU">
-                                    </td>
-                                    <td class="p-2 text-center align-middle">
-                                        <!-- Another placeholder for additional skill or empty cell -->
-                                        <img src="images/iot.png" alt=Iot" class="inline-block w-12 h-12 object-contain" title="Iot">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- What I Do List -->
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-700">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Developing and debugging embedded software.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Working on test and debug tools like logic analyzers, oscilloscopes, and simulators, etc.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Working with PCB design software such as Altium, EasyEDA, KiCAD, Eagle, and mikroC.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Designing electronic circuits and hardware, from schematic to PCB layout.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Developing and debugging electronic hardware prototypes.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i>
-                            <span>Working with microcontrollers and platforms like Arduino for rapid prototyping.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Education</h2>
-            <div class="space-y-6">
-                <div class="border-b border-gray-200 dark:border-gray-600 pb-4 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Bachelor of Science in EETE</h3>
-                    <p class="text-gray-700 text-lg">Dhaka International University, Bangladesh</p>
-                    <p class="text-gray-600 text-md">2019</p>
-                </div>
-                <div class="border-b border-gray-200 dark:border-gray-600 pb-4 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Diploma In Electronics Engineering</h3>
-                    <p class="text-gray-700 text-lg">Bangladesh Institute of Information Technology, Bangladesh</p>
-                    <p class="text-gray-600 text-md">2012</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section (Carousel + Projects Page) -->
-        <section id="projects" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">My Projects</h2>
-            <div class="relative"> <!-- Added relative positioning for arrows -->
-                <!-- Left Arrow Button -->
-                <button id="scroll-left-btn" class="scroll-arrow left">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <!-- Horizontal scrolling container for projects -->
-                <div id="projects-container" class="flex overflow-x-auto space-x-6 pb-4 projects-scroll-container">
-                    <!-- Projects will be dynamically loaded here by JavaScript -->
-                </div>
-                <!-- Right Arrow Button -->
-                <button id="scroll-right-btn" class="scroll-arrow right">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <!-- New "View All Projects" button -->
-            <div class="text-center mt-8">
-                <a href="#projects-page" class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">View All Projects</a>
-            </div>
-        </section>
-
-        <!-- Projects Page (Grid) -->
-        <section id="projects-page" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Check Out My Works</h2>
-            <div id="projects-grid" class="grid grid-cols-1 gap-8">
-                <!-- Projects will be dynamically loaded here by JavaScript -->
-            </div>
-            <div class="text-center mt-12">
-                <a href="#hero" id="back-to-home" class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Back to Home</a>
-            </div>
-
-        </section>
-
-
-
-        <!-- Work Experience Section -->
-        <section id="experience" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Work Experience</h2>
-            <div class="space-y-8">
-                <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Embedded System Engineer (R&D)</h3>
-                    <p class="text-gray-700 text-lg">THT-Space Electrical Company Ltd</p>
-                    <p class="text-gray-600 text-md mb-2">Jun 2024 - Continuing</p>
-                    <p class="text-gray-700 leading-relaxed">Design and develop microcontroller hardware and software, write real-time code, create device drivers, integrate communication protocols, test and debug, and collaborate with production engineers for seamless functionality.</p>
-                </div>
-                <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Product Manager</h3>
-                    <p class="text-gray-700 text-lg">Amigo Alliance BD</p>
-                    <p class="text-gray-600 text-md mb-2">Oct 2022 - May 2024</p>
-                    <p class="text-gray-700 leading-relaxed">As a Project Manager, I develop project plans, coordinate with team members and stakeholders, track progress, and provide regular updates. I oversee project status from both the factory and corporate ends, ensuring efficient and effective completion from suppliers to delivery.</p>
-                </div>
-                <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Field Application Engineer (FAE)</h3>
-                    <p class="text-gray-700 text-lg">KINGCOMM UNITED GROUP LIMITED</p>
-                    <p class="text-gray-600 text-md mb-2">Jan 2022 - Sep 2022</p>
-                    <p class="text-gray-700 leading-relaxed">I oversee client software and hardware testing, assist in problem-solving, and track material quality analysis. I help resolve production issues to ensure on-time delivery and quality, playing a key role in coordinating between the company and customers. Additionally, I support the commercial team in closing commercial affairs with customers.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Assistant Manager(Electronics)</h3>
-                    <p class="text-gray-700 text-lg">Angira Electronics Ltd.</p>
-                    <p class="text-gray-600 text-md mb-2">Aug 2020 - Dec 2021</p>
-                    <p class="text-gray-700 leading-relaxed">I define product purpose and features, create schematics, PCB layouts, and select components. I build and test prototypes, develop embedded software, and evaluate material and manufacturing costs. I design for efficient production, create assembly instructions and user manuals, and collaborate with cross-functional teams.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Reach out to me!</h2>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <p class="text-gray-700 mb-4 leading-relaxed">Let's collaborate and build something amazing! Feel free to reach out. Email: <a href="mailto:shadman0001@gmail.com" class="text-indigo-600 hover:underline">shadman0001@gmail.com</a>.</p>
-                    <!-- Social Media Links -->
-                    <div class="mt-6 flex justify-center md:justify-start space-x-6 text-3xl">
-                        <a href="https://github.com/shadman-shahriar" target="_blank" aria-label="GitHub" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="http://linkedin.com/in/shadmanshahriar" target="_blank" aria-label="LinkedIn" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.facebook.com/shadman0001" target="_blank" aria-label="Facebook" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com/shadman0001/" target="_blank" aria-label="Instagram" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/1722158353" target="_blank" aria-label="WhatsApp" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-end items-center">
-                    <!-- Big Contact Icon -->
-                    <i class="fas fa-envelope-open-text text-indigo-600 dark:text-indigo-400 text-9xl"></i>
-                </div>
-            </div>
-            <!-- Removed the contact form as per request -->
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 transition-colors duration-300">
-        <div class="container mx-auto px-4 text-center">
-
-            <p>&copy; <span id="current-year"></span> Shadman Shahriar. All rights reserved.</p>
-            <!-- Removed social media links from footer as requested -->
+        <div class="mt-8 flex justify-center md:justify-start space-x-6 text-2xl">
+          <a href="https://github.com/shadman-shahriar" target="_blank" aria-label="GitHub" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="http://linkedin.com/in/shadmanshahriar" target="_blank" aria-label="LinkedIn" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.facebook.com/shadman0001" target="_blank" aria-label="Facebook" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/shadman0001/" target="_blank" aria-label="Instagram" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/1722158353" target="_blank" aria-label="WhatsApp" class="text-white hover:text-gray-200 transform hover:scale-110 transition-transform duration-200">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
-    </footer>
 
-    <script>
-        // Project Data (duplicated for consistency across pages)
-        const allProjects = [
-            {
-                title: "Hot-airgun station",
-                description: "Designed and developed a multifunctional Hot Air Gun Station featuring precise microcontroller-based temperature control, seven-segment display, and adjustable airflow. Integrated with intuitive fault indication and stability features for professional soldering and de-soldering applications.",
-                image: "project_images/Hot-airgun_station.PNG",
-                technologies: ["AVR", "PID", "PCB", "Firmware"],
-                projectLink: "#" // Placeholder for actual project link
-            },
-            {
-                title: "Bench Power Supply",
-                description: "Developed a DC bench power supply with 0–24V / 0–6A variable output, featuring constant voltage/current modes and short-circuit protection. Includes dual 3-digit displays, individual control knobs, and LED indicators for CV/CC modes.",
-                image: "project_images/Bench_Power_Supply.PNG",
-                technologies: ["C++", "PCB Design", "CC", "CV" ],
-                projectLink: "#"
-            },
-            {
-                title: "SMD rework station",
-                description: "Designed an integrated SMD rework and soldering station powered by an AVR microcontroller, ensuring precise temperature control and stability. Features LCD display, independent operation, fault detection, and automatic cooling for enhanced safety and efficiency.",
-                image: "project_images/SMD_rework_station.PNG",
-                technologies: ["PCB Design", "Embedded C++", "AVR", "PID"],
-                projectLink: "#"
-            },
-            {
-                title: "AVR MCU Programmer",
-                description: "Developed a USBASP-based AVR programmer supporting 8-pin to 40-pin Atmel MCUs, featuring ISP header for external circuit programming. Compact, reliable, and ideal for embedded development and prototyping.",
-                image: "project_images/AVR_MCU_Programmer.PNG",
-                technologies: ["KiCad", "PCB Design", "AVR", "Firmware"],
-                projectLink: "#"
-            },
-            {
-                title: "Electronic Component Tester",
-                description: "Designed a compact electronic component tester capable of measuring resistors, capacitors, inductors, and transistors (BJTs, MOSFETs, IGBTs) with high accuracy. A versatile, user-friendly tool for electronics testing and troubleshooting.",
-                image: "project_images/Electronic_Component_Tester.PNG",
-                technologies: ["AVR Microcontroller", "LCD", "Tools", "Firmware"],
-                projectLink: "#"
-            },
-            {
-                title: "Milk Cooler Tank Controller",
-                description: "Developed an AVR-based milk cooler tank controller for precise and energy-efficient temperature regulation in dairy applications. Ensures optimal milk preservation with reliable performance and minimal power consumption.",
-                image: "project_images/Milk_Cooler_Tank_Controlle.PNG",
-                technologies: ["Temperature Control", "Embedded System", "Microcontroller", "Food Processing Equipment"],
-                projectLink: "#"
-            },
-            {
-                title: "Smart Bike Helmet Indicator",
-                description: "Designed a smart bike helmet with LED-based turn and brake indicators, featuring Atmega328p control and NRF wireless communication for synchronized signaling. Enhances cyclist safety through real-time hardware and firmware integration.",
-                image: "project_images/Smart_Bike_Helmet Indicator.PNG",
-                technologies: ["Bike Safety", "Embedded System", "Wireless Communication", "Firmware Development"],
-                projectLink: "#"
-            },
-        ];
+        <div class="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+          <a
+            href="https://mega.nz/file/3c03SCCb#-DLGo6lUCa3LxmMMKTVZBZjA62BxVWofpTPH2s8OaMk"
+            target="_blank"
+            class="inline-block bg-white text-indigo-600 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
+            style="color: #6495ED;"
+          >
+            <i class="fas fa-download mr-2"></i>Portfolio
+          </a>
+          <a
+            href="https://mega.nz/file/zZc3GDZT#fclhQZsGbaRyZ-jgfi03m6t1V3QfuFA1mPMDPzWYAwM"
+            target="_blank"
+            class="inline-block bg-white text-indigo-600 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105"
+            style="color: #6495ED;"
+          >
+            <i class="fas fa-download mr-2"></i>Resume
+          </a>
+        </div>
+      </div>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+      <div class="md:w-1/2 flex justify-end">
+        <img src="images/main_photo.png" alt="Your Profile Photo" class="w-64 h-64 rounded-full object-cover border-4 border-white shadow-xl" />
+      </div>
+    </section>
 
-                // Check if the href is an internal anchor or an external page
-                const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // For external pages like projects.html, navigate directly
-                    window.location.href = targetId;
-                }
-            });
-        });
+    <!-- About Me Section -->
+    <section id="about" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">About Me</h2>
+      <div class="prose max-w-none text-gray-700 leading-relaxed">
+        <p class="mb-4">Hello! I'm Shadman Shahriar, an Electronics and Embedded Systems Engineer with a passion for bringing innovative ideas to life through hardware and software integration. My journey in electronics began with a Diploma in Electronics Engineering, followed by a Bachelor of Science in EETE, providing me with a robust theoretical and practical foundation.</p>
+        <p class="mb-4">A passionate Embedded Software Engineer 🚀 with experience in Microcontrollers, Sensors, firmware, and Embedded Systems. Good working knowledge of C/C++, PCB, and circuit design with manufacturing and quality assurance.</p>
+        <p class="mb-4">Throughout my career, I've honed my skills in designing and developing microcontroller-based solutions, writing efficient real-time code, creating device drivers, and integrating various communication protocols. My expertise extends to comprehensive testing and debugging, ensuring seamless functionality from concept to production. I thrive on collaborating with cross-functional teams, including production engineers, to deliver high-quality electronic products.</p>
+        <p>Beyond the technical aspects, I also have experience in product management and field application engineering, bridging the gap between technical development and market needs. I am dedicated to continuous learning and staying abreast of the latest advancements in embedded systems and electronics, always seeking new challenges to expand my capabilities and contribute to impactful projects.</p>
+      </div>
+    </section>
 
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+    <!-- Skills Section -->
+    <section id="skills" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">What I do</h2>
+      <div class="flex flex-col md:flex-row items-start md:space-x-8">
+        <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
+          <img src="images/skills-illustration.png" alt="What I Do Illustration" class="rounded-lg shadow-md w-full h-auto max-w-xs" />
+        </div>
 
-        // Function to render projects for the carousel
-        function renderCarouselProjects() {
-            const projectsContainer = document.getElementById('projects-container');
-            if (!projectsContainer) return;
+        <div class="md:w-2/3">
+          <p class="text-xl font-semibold text-gray-700 dark:text-gray-700 mb-6">DEVELOPING FIRMWARE OF MICROCONTROLLERS AND DESIGNING HARDWARE CIRCUIT (PCBs)</p>
 
-            projectsContainer.innerHTML = ''; // Clear existing content
-            const projectsToShow = allProjects.slice(0, 5); // Show first 5 projects in carousel
+          <div class="mb-8 overflow-x-auto">
+            <table class="table-fixed w-full border-collapse">
+              <thead>
+                <tr>
+                  <th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th>
+                  <th class="p-2"></th><th class="p-2"></th><th class="p-2"></th><th class="p-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="h-20">
+                  <td class="p-2 text-center align-middle"><img src="images/c.png" alt="C Language" class="inline-block w-12 h-12 object-contain" title="C" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/cpp.png" alt="C++ Language" class="inline-block w-12 h-12 object-contain" title="C++" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/avr.png" alt="AVR MCU" class="inline-block w-12 h-12 object-contain" title="AVR" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/arm.png" alt="ARM MCU" class="inline-block w-12 h-12 object-contain" title="ARM" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/stm32.png" alt="STM32 MCU" class="inline-block w-12 h-12 object-contain" title="STM32" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/arduinoide.png" alt="Arduino" class="inline-block w-12 h-12 object-contain" title="Arduino" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/esp.png" alt="ESP8266" class="inline-block w-12 h-12 object-contain" title="ESP8266" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/esp32.png" alt="ESP32" class="inline-block w-12 h-12 object-contain" title="ESP32" /></td>
+                </tr>
+                <tr class="h-20">
+                  <td class="p-2 text-center align-middle"><img src="images/kicad.png" alt="KiCad" class="inline-block w-12 h-12 object-contain" title="KiCad" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/easyeda.png" alt="EasyEDA" class="inline-block w-12 h-12 object-contain" title="EasyEDA" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/altium.png" alt="Altium Designer" class="inline-block w-12 h-12 object-contain" title="Altium Designer" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/eagle.png" alt="Eagle" class="inline-block w-12 h-12 object-contain" title="Eagle" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/proteus.png" alt="Proteus" class="inline-block w-12 h-12 object-contain" title="Proteus" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/mikroc.png" alt="MikroC" class="inline-block w-12 h-12 object-contain" title="MikroC" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/microcontroller.png" alt="MCU" class="inline-block w-12 h-12 object-contain" title="MCU" /></td>
+                  <td class="p-2 text-center align-middle"><img src="images/iot.png" alt="Iot" class="inline-block w-12 h-12 object-contain" title="Iot" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-            projectsToShow.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'flex-none w-80 bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 transform hover:-translate-y-1';
+          <ul class="space-y-3 text-gray-700 dark:text-gray-700">
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Developing and debugging embedded software.</span></li>
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Working on test and debug tools like logic analyzers, oscilloscopes, and simulators, etc.</span></li>
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Working with PCB design software such as Altium, EasyEDA, KiCAD, Eagle, and mikroC.</span></li>
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Designing electronic circuits and hardware, from schematic to PCB layout.</span></li>
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Developing and debugging electronic hardware prototypes.</span></li>
+            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Working with microcontrollers and platforms like Arduino for rapid prototyping.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-                const techTagsHtml = project.technologies.map(tech => `
-                    <span class="bg-indigo-200 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">${tech}</span>
-                `).join('');
+    <!-- Education Section -->
+    <section id="education" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Education</h2>
+      <div class="space-y-6">
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-4 last:border-b-0">
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Bachelor of Science in EETE</h3>
+          <p class="text-gray-700 text-lg">Dhaka International University, Bangladesh</p>
+          <p class="text-gray-600 text-md">2019</p>
+        </div>
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-4 last:border-b-0">
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Diploma In Electronics Engineering</h3>
+          <p class="text-gray-700 text-lg">Bangladesh Institute of Information Technology, Bangladesh</p>
+          <p class="text-gray-600 text-md">2012</p>
+        </div>
+      </div>
+    </section>
 
-                projectCard.innerHTML = `
-                    <img src="${project.image}" alt="${project.title} Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-indigo-800 mb-2">${project.title}</h3>
-                        <p class="text-gray-700 mb-4">${project.description}</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            ${techTagsHtml}
-                        </div>
-                    </div>
-                `;
-                projectsContainer.appendChild(projectCard);
-            });
-        }
+    <!-- Projects Section (Carousel + Projects Page) -->
+    <section id="projects" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">My Projects</h2>
 
-        // Function to render projects for the full projects grid section
-        function renderProjectsGrid() {
-            const projectsGrid = document.getElementById('projects-grid');
-            if (!projectsGrid) return;
+      <div class="relative">
+        <button id="scroll-left-btn" class="scroll-arrow left" type="button"><i class="fas fa-chevron-left"></i></button>
+        <div id="projects-container" class="flex overflow-x-auto space-x-6 pb-4 projects-scroll-container"></div>
+        <button id="scroll-right-btn" class="scroll-arrow right" type="button"><i class="fas fa-chevron-right"></i></button>
+      </div>
 
-            projectsGrid.innerHTML = ''; // Clear existing content
+      <div class="text-center mt-8">
+        <a href="#projects-page" class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">View All Projects</a>
+      </div>
+    </section>
 
-            allProjects.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'flex flex-col md:flex-row bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 transform hover:-translate-y-1';
+    <!-- Projects Page (Grid) -->
+    <section id="projects-page" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Check Out My Works</h2>
+      <div id="projects-grid" class="grid grid-cols-1 gap-8"></div>
+      <div class="text-center mt-12">
+        <a href="#hero" id="back-to-home" class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Back to Home</a>
+      </div>
+    </section>
 
-                const techTagsHtml = project.technologies.map(tech => `
-                    <span class="bg-indigo-200 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">${tech}</span>
-                `).join('');
+    <!-- Work Experience Section -->
+    <section id="experience" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Work Experience</h2>
+      <div class="space-y-8">
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Embedded System Engineer (R&amp;D)</h3>
+          <p class="text-gray-700 text-lg">THT-Space Electrical Company Ltd</p>
+          <p class="text-gray-600 text-md mb-2">Jun 2024 - Continuing</p>
+          <p class="text-gray-700 leading-relaxed">Design and develop microcontroller hardware and software, write real-time code, create device drivers, integrate communication protocols, test and debug, and collaborate with production engineers for seamless functionality.</p>
+        </div>
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Product Manager</h3>
+          <p class="text-gray-700 text-lg">Amigo Alliance BD</p>
+          <p class="text-gray-600 text-md mb-2">Oct 2022 - May 2024</p>
+          <p class="text-gray-700 leading-relaxed">As a Project Manager, I develop project plans, coordinate with team members and stakeholders, track progress, and provide regular updates. I oversee project status from both the factory and corporate ends, ensuring efficient and effective completion from suppliers to delivery.</p>
+        </div>
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-6 last:border-b-0">
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Field Application Engineer (FAE)</h3>
+          <p class="text-gray-700 text-lg">KINGCOMM UNITED GROUP LIMITED</p>
+          <p class="text-gray-600 text-md mb-2">Jan 2022 - Sep 2022</p>
+          <p class="text-gray-700 leading-relaxed">I oversee client software and hardware testing, assist in problem-solving, and track material quality analysis. I help resolve production issues to ensure on-time delivery and quality, playing a key role in coordinating between the company and customers. Additionally, I support the commercial team in closing commercial affairs with customers.</p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-800 mb-1">Assistant Manager(Electronics)</h3>
+          <p class="text-gray-700 text-lg">Angira Electronics Ltd.</p>
+          <p class="text-gray-600 text-md mb-2">Aug 2020 - Dec 2021</p>
+          <p class="text-gray-700 leading-relaxed">I define product purpose and features, create schematics, PCB layouts, and select components. I build and test prototypes, develop embedded software, and evaluate material and manufacturing costs. I design for efficient production, create assembly instructions and user manuals, and collaborate with cross-functional teams.</p>
+        </div>
+      </div>
+    </section>
 
-                projectCard.innerHTML = `
-                    <div class="md:w-1/3 w-full">
-                        <img src="${project.image}" alt="${project.title} Thumbnail" class="w-full h-48 md:h-full object-cover">
-                    </div>
-                    <div class="md:w-2/3 p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-indigo-800 mb-2">${project.title}</h3>
-                            <p class="text-gray-700 mb-4">${project.description}</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                ${techTagsHtml}
-                            </div>
-                        </div>
-                        ${project.projectLink && project.projectLink !== '#' ? `<a href="${project.projectLink}" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300 self-start">View Details</a>` : ''}
-                    </div>
-                `;
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-12 transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">Reach out to me!</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div class="md:w-1/2 text-center md:text-left">
+          <p class="text-gray-700 mb-4 leading-relaxed">Let's collaborate and build something amazing! Feel free to reach out. Email: <a href="mailto:shadman0001@gmail.com" class="text-indigo-600 hover:underline">shadman0001@gmail.com</a>.</p>
+          <div class="mt-6 flex justify-center md:justify-start space-x-6 text-3xl">
+            <a href="https://github.com/shadman-shahriar" target="_blank" aria-label="GitHub" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200"><i class="fab fa-github"></i></a>
+            <a href="http://linkedin.com/in/shadmanshahriar" target="_blank" aria-label="LinkedIn" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/shadman0001" target="_blank" aria-label="Facebook" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/shadman0001/" target="_blank" aria-label="Instagram" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/1722158353" target="_blank" aria-label="WhatsApp" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transform hover:scale-110 transition-transform duration-200"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-end items-center">
+          <i class="fas fa-envelope-open-text text-indigo-600 dark:text-indigo-400 text-9xl"></i>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                projectsGrid.appendChild(projectCard);
-            });
-        }
+  <footer class="bg-gray-800 text-white py-6 transition-colors duration-300">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; <span id="current-year"></span> Shadman Shahriar. All rights reserved.</p>
+    </div>
+  </footer>
 
-
-        // Project Carousel Logic
-        const projectsContainer = document.getElementById('projects-container');
-        const scrollLeftBtn = document.getElementById('scroll-left-btn');
-        const scrollRightBtn = document.getElementById('scroll-right-btn');
-        const projectCardWidth = 320 + 24; // w-80 (320px) + space-x-6 (24px)
-
-        let autoScrollInterval;
-        let autoScrollTimeout;
-        const autoScrollDelay = 5000; // 5 seconds
-        const userInteractionDelay = 10000; // 10 seconds after user interaction
-
-        // Function to scroll projects
-        function scrollProjects(direction) {
-            const scrollAmount = projectCardWidth; // Scroll by one card width
-            if (direction === 'left') {
-                projectsContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            } else {
-                projectsContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-            resetAutoScrollTimer();
-        }
-
-        // Auto-scrolling function
-        function startAutoScroll() {
-            stopAutoScroll(); // Clear any existing interval
-            autoScrollInterval = setInterval(() => {
-                // If at the end, jump to the beginning
-                if (projectsContainer.scrollLeft + projectsContainer.clientWidth >= projectsContainer.scrollWidth - 1) { // -1 for tolerance
-                    projectsContainer.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    projectsContainer.scrollBy({ left: projectCardWidth, behavior: 'smooth' });
-                }
-            }, autoScrollDelay);
-        }
-
-        // Stop auto-scrolling
-        function stopAutoScroll() {
-            clearInterval(autoScrollInterval);
-            clearTimeout(autoScrollTimeout);
-        }
-
-        // Reset auto-scroll timer after user interaction
-        function resetAutoScrollTimer() {
-            stopAutoScroll(); // Stop current auto-scroll
-            autoScrollTimeout = setTimeout(startAutoScroll, userInteractionDelay); // Restart after delay
-        }
-
-        // Event Listeners for arrow buttons
-        if (scrollLeftBtn) {
-            scrollLeftBtn.addEventListener('click', () => scrollProjects('left'));
-        }
-        if (scrollRightBtn) {
-            scrollRightBtn.addEventListener('click', () => scrollProjects('right'));
-        }
-
-        // Pause auto-scroll on manual scroll (e.g., mouse drag)
-        projectsContainer.addEventListener('scroll', resetAutoScrollTimer);
-
-        // Start auto-scrolling when the page loads
-        window.addEventListener('load', () => {
-            // Ensure the main window.onload logic runs first, then start typing effect
-            setTimeout(typeWriter, 500); // Small delay to ensure other initializations are done
-            renderCarouselProjects(); // Render projects for the carousel
-            renderProjectsGrid(); // Render projects for the full projects grid
-        });
-
-
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleIcon = document.getElementById('theme-toggle-icon');
-        const htmlElement = document.documentElement; // Get the html element
-
-        // Function to set the theme
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                htmlElement.classList.add('dark');
-                themeToggleIcon.classList.remove('fa-moon');
-                themeToggleIcon.classList.add('fa-sun');
-            } else {
-                htmlElement.classList.remove('dark');
-                themeToggleIcon.classList.remove('fa-sun');
-                themeToggleIcon.classList.add('fa-moon');
-            }
-            localStorage.setItem('theme', theme); // Save preference
-        }
-
-        // Check for saved theme preference on load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // If no preference saved, check system preference
-            setTheme('dark');
-        } else {
-            setTheme('light'); // Default to light if no preference and system is light
-        }
-
-        // Event listener for the theme toggle button
-        if (themeToggleBtn) { // Added a check to ensure button exists before adding listener
-            themeToggleBtn.addEventListener('click', () => {
-                if (htmlElement.classList.contains('dark')) {
-                    setTheme('light');
-                } else {
-                    setTheme('dark');
-                }
-            });
-        } else {
-            console.error('Theme toggle button not found!'); // Log an error if button is missing
-        }
-
-        // Typing effect for Hero section
-        const professions = [
-            "Electronics Engineer",
-            "Embedded System Engineer",
-            "Schematic designing",
-            "PCB designing",
-            "MCU Programming",
-            "Electronic Product Development"
-        ];
-        let professionIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100; // milliseconds per character
-        const deletingSpeed = 50; // milliseconds per character
-        const pauseBeforeDelete = 1500; // milliseconds to pause after typing
-        const pauseBeforeType = 500; // milliseconds to pause before typing next word
-
-        const typingTextElement = document.getElementById('typing-text');
-
-        function typeWriter() {
-            const currentProfession = professions[professionIndex];
-            if (isDeleting) {
-                // Deleting text
-                typingTextElement.textContent = currentProfession.substring(0, charIndex - 1);
-                charIndex--;
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    professionIndex = (professionIndex + 1) % professions.length;
-                    setTimeout(typeWriter, pauseBeforeType);
-                } else {
-                    setTimeout(typeWriter, deletingSpeed);
-                }
-            } else {
-                // Typing text
-                typingTextElement.textContent = currentProfession.substring(0, charIndex + 1);
-                charIndex++;
-                if (charIndex === currentProfession.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, pauseBeforeDelete);
-                } else {
-                    setTimeout(typeWriter, typingSpeed);
-                }
-            }
-        }
-    </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
+
