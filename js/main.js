@@ -27,6 +27,62 @@ const allProjects = [
     projectLink: "#",
   },
   {
+    title: "PlantPulse IoT Hardware (v1.0)",
+    description:
+      "Designed and prototyped a smart agriculture monitoring PCB centered around the ESP32-S3. Integrates an RS485 Modbus RTU interface for a 7-in-1 soil sensor, complete with onboard 3.7V Li-ion battery management, USB-C charging, and dedicated voltage regulation for field-ready environmental logging.",
+    image: "project_images/plant_pulse_v1.PNG",
+    technologies: ["PCB Design", "ESP32-S3", "Modbus RTU", "Power Management"],
+    projectLink: "https://github.com/LankaSmartFarm/PlantPulse/tree/main/Hardware",
+  },
+  {
+    title: "WS2812 Wireless LED Controller",
+    description:
+      "Designed and developed a split RX/TX PCB control system utilizing ESP microcontrollers for wireless addressable LED management. Features low-latency data transmission to drive WS2812 LED matrices or strips remotely, combining robust RF communication with precise timing control.",
+    image: "project_images/ws2812_wireless_controller.PNG",
+    technologies: ["PCB Design", "ESP32 / ESP8266", "Embedded C++", "Wireless Communication"],
+    projectLink: "#",
+  },
+  {
+    title: "Inverter Companion PCB",
+    description:
+      "Developed a control and monitoring companion board for basic inverter setups using a CH32 MCU. Features automated mains/inverter changeover, smart battery protection, load safety controls, real-time power tracking via display, and temperature-controlled thermal management.",
+    image: "project_images/inverter_companion_pcb.PNG", // Update with your actual image path
+    technologies: ["PCB Design", "Embedded C", "CH32 MCU", "Power Electronics"],
+    projectLink: "#",
+  },
+  {
+    title: "3-Input Automatic Transfer Switch (ATS)",
+    description:
+      "Engineered a tiered-logic power management system utilizing an AVR microcontroller to manage switching between Main AC, Inverter, and Generator sources. Features integrated battery threshold monitoring to protect battery life and automated generator starter control.",
+    image: "project_images/3_input_ats.PNG",
+    technologies: ["PCB Design", "Embedded C++", "AVR", "Power Management"],
+    projectLink: "#",
+  },
+  {
+    title: "USB-C Component Tester",
+    description:
+      "Designed and prototyped a compact component tester featuring a USB Type-C power input and an integrated OLED display for real-time diagnostics. Implemented custom firmware to accurately detect and measure various electronic components.",
+    image: "project_images/component_tester.PNG",
+    technologies: ["PCB Design", "Embedded C", "OLED Display", "Hardware Prototyping"],
+    projectLink: "#",
+  },
+  {
+    title: "SMD Rework Station (v3)",
+    description:
+      "Developing the third iteration of a polished, professional SMD rework station. Engineered a custom PCB that interfaces a low-cost feature phone TFT display with an STM32 microcontroller, rendering a custom-designed, smooth UI for real-time temperature and system tracking.",
+    image: "project_images/smd_rework_v3.PNG",
+    technologies: ["PCB Design", "STM32", "Embedded C++", "UI/UX Design"],
+    projectLink: "#",
+  },
+  {
+    title: "Custom HMI Control Board",
+    description:
+      "Designed and developed a microcontroller-based HMI control board tailored for industrial automation environments. Engineered to bridge custom firmware with display interfaces, providing robust, real-time monitoring and control capabilities as an alternative to standard PLCs.",
+    image: "project_images/custom_hmi_board.PNG",
+    technologies: ["PCB Design", "Industrial Automation", "Firmware Development", "HMI"],
+    projectLink: "#",
+  },
+  {
     title: "AVR MCU Programmer",
     description:
       "Developed a USBASP-based AVR programmer supporting 8-pin to 40-pin Atmel MCUs, featuring ISP header for external circuit programming. Compact, reliable, and ideal for embedded development and prototyping.",
