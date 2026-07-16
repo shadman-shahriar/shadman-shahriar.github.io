@@ -48,7 +48,7 @@ const allProjects = [
       "Developed a control and monitoring companion board for basic inverter setups using a CH32 MCU. Features automated mains/inverter changeover, smart battery protection, load safety controls, real-time power tracking via display, and temperature-controlled thermal management.",
     image: "project_images/inverter_companion_pcb.png", // Update with your actual image path
     technologies: ["PCB Design", "Embedded C", "CH32 MCU", "Power Electronics"],
-    projectLink: "#",
+    projectLink: "https://www.linkedin.com/posts/shadmanshahriar_pcbdesign-embeddedsystems-powerelectronics-activity-7482769650041151488-LrKU?utm_source=share&utm_medium=member_desktop&rcm=ACoAABVGNkYBf_oUs666uaz4pbypM0IGGUL8-fE",
   },
   {
     title: "3-Input Automatic Transfer Switch (ATS)",
@@ -56,7 +56,7 @@ const allProjects = [
       "Engineered a tiered-logic power management system utilizing an AVR microcontroller to manage switching between Main AC, Inverter, and Generator sources. Features integrated battery threshold monitoring to protect battery life and automated generator starter control.",
     image: "project_images/3_input_ats.png",
     technologies: ["PCB Design", "Embedded C++", "AVR", "Power Management"],
-    projectLink: "#",
+    projectLink: "https://www.linkedin.com/posts/shadmanshahriar_embeddedsystems-pcbdesign-powermanagement-activity-7390028427266818048-syG-?utm_source=share&utm_medium=member_desktop&rcm=ACoAABVGNkYBf_oUs666uaz4pbypM0IGGUL8-fE",
   },
   {
     title: "USB-C Component Tester",
@@ -64,7 +64,7 @@ const allProjects = [
       "Designed and prototyped a compact component tester featuring a USB Type-C power input and an integrated OLED display for real-time diagnostics. Implemented custom firmware to accurately detect and measure various electronic components.",
     image: "project_images/component_tester.PNG",
     technologies: ["PCB Design", "Embedded C", "OLED Display", "Hardware Prototyping"],
-    projectLink: "#",
+    projectLink: "https://www.linkedin.com/posts/shadmanshahriar_hardwaredevelopment-embeddedsystems-electronics-activity-7345258687428513793-HKaw?utm_source=share&utm_medium=member_desktop&rcm=ACoAABVGNkYBf_oUs666uaz4pbypM0IGGUL8-fE",
   },
   {
     title: "SMD Rework Station (v3)",
@@ -72,7 +72,7 @@ const allProjects = [
       "Developing the third iteration of a polished, professional SMD rework station. Engineered a custom PCB that interfaces a low-cost feature phone TFT display with an STM32 microcontroller, rendering a custom-designed, smooth UI for real-time temperature and system tracking.",
     image: "project_images/smd_rework_v3.png",
     technologies: ["PCB Design", "STM32", "Embedded C++", "UI/UX Design"],
-    projectLink: "#",
+    projectLink: "https://www.linkedin.com/posts/shadmanshahriar_stm32-embeddedsystems-pcbdesign-activity-7449837994187964417-vQ0B?utm_source=share&utm_medium=member_desktop&rcm=ACoAABVGNkYBf_oUs666uaz4pbypM0IGGUL8-fE",
   },
   {
     title: "Custom HMI Control Board",
@@ -97,6 +97,14 @@ const allProjects = [
     image: "project_images/Electronic_Component_Tester.PNG",
     technologies: ["AVR Microcontroller", "LCD", "Tools", "Firmware"],
     projectLink: "#",
+  },
+  {
+    title: "BikeHack: Smart Bicycle Security System",
+    description:
+      "Designed and developed a smart security and monitoring system for bicycles with a 300-500 meter operational range. Features include movement-triggered alarms, geofencing (out-of-range alerts), an 8x8 dot LED matrix display for custom status/emojis, and integrated turn signaling capabilities.",
+    image: "project_images/bike_hack.PNG",
+    technologies: ["Embedded Systems", "PCB Design", "Wireless Communication", "LED Matrix Control"],
+    projectLink: "https://www.linkedin.com/posts/shadmanshahriar_bikehack-techdiy-smartsecurity-activity-7323909758770388993-KYM3",
   },
   {
     title: "Milk Cooler Tank Controller",
